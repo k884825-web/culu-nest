@@ -1,0 +1,626 @@
+/* ==========================================================================
+   home.css
+   --------------------------------------------------------------------------
+   トップページ（index.html）だけで使う、セクション固有のレイアウトです。
+   共通パーツ（ボタンやカードなど）は components.css を参照してください。
+   セクションは index.html の順番と合わせて上から並べています。
+   ========================================================================== */
+
+/* =========================================================================
+   1. ヒーロー（ファーストビュー）
+   ========================================================================= */
+.hero{
+  position:relative;
+  padding-top:var(--space-2xl);
+  padding-bottom:var(--space-3xl);
+  overflow:hidden;
+}
+.hero-inner{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:var(--space-xl);
+  align-items:center;
+}
+@media (min-width:900px){
+  .hero-inner{ grid-template-columns:1.05fr 1fr; gap:var(--space-2xl); }
+}
+
+.hero-copy h1{ margin-bottom:var(--space-md); }
+.hero-sub{
+  font-size:clamp(15px,1.9vw,17px);
+  color:var(--color-ink-soft);
+  max-width:46ch;
+  margin-bottom:var(--space-lg);
+}
+.hero-actions{ display:flex; flex-direction:column; gap:var(--space-sm); align-items:flex-start; }
+.hero-cta-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:var(--space-md);
+}
+/* メインCTAに気が乗らない人のための、ハードルの低い導線（サンプルを見るだけ） */
+.hero-secondary-link{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  font-size:13.5px;
+  color:var(--color-ink-soft);
+  border-bottom:1px solid var(--color-line-strong);
+  padding-bottom:2px;
+  transition:color .15s, border-color .15s;
+}
+.hero-secondary-link:hover{ color:var(--color-accent); border-color:var(--color-accent); }
+.hero-note{
+  font-size:12.5px;
+  color:var(--color-ink-faint);
+  margin:0;
+}
+
+/* 実写真（hero-crop.jpg）は横長の構図で書き出しているため、
+   縦長ではなく横長寄りの比率に変更している */
+.hero-visual{
+  position:relative;
+  aspect-ratio:4/3;
+  border-radius:var(--radius-l);
+  overflow:hidden;
+  background:var(--color-paper-alt);
+  border:1px solid var(--color-line);
+}
+.hero-visual img{
+  width:100%; height:100%;
+  object-fit:cover;
+  object-position:center 42%;
+}
+
+/* スクロールを促す小さな矢印 */
+.scroll-cue{
+  position:absolute;
+  left:50%;
+  bottom:var(--space-md);
+  transform:translateX(-50%);
+  display:none;
+  width:26px; height:26px;
+  border:1px solid var(--color-line-strong);
+  border-radius:50%;
+  align-items:center;
+  justify-content:center;
+}
+.scroll-cue span{
+  width:6px; height:6px;
+  border-right:1.5px solid var(--color-ink-faint);
+  border-bottom:1.5px solid var(--color-ink-faint);
+  transform:rotate(45deg) translate(-1px,-1px);
+}
+@media (min-width:640px){ .scroll-cue{ display:flex; } }
+
+/* =========================================================================
+   2. こんなお悩みありませんか？ / 4. 分析すると分かること 共通カード
+   ========================================================================= */
+.pain-card,
+.insight-card{
+  display:flex;
+  align-items:flex-start;
+  gap:var(--space-sm);
+  padding:var(--space-md);
+  background:var(--color-paper);
+  border:1px solid var(--color-line);
+  border-radius:var(--radius-m);
+}
+.pain-card .card-icon,
+.insight-card .card-icon{ margin-bottom:0; flex:none; }
+.pain-card p,
+.insight-card p{ font-size:14.5px; color:var(--color-ink); margin:0; }
+/* お悩みカードは「オーナー自身の心の声」として鉤括弧で囲み、共感を強める */
+.pain-card p::before{ content:"「"; color:var(--color-ink-faint); }
+.pain-card p::after{ content:"」"; color:var(--color-ink-faint); }
+
+/* 分析でわかることカードは、アイコンを大きくして中央揃えにし、
+   短い見出し語だけで一目で伝わるようにする（お悩みカードとは意図的に差別化） */
+.insight-card{
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:14px;
+  padding:var(--space-lg) var(--space-md);
+}
+.insight-card .card-icon{
+  width:56px;
+  height:56px;
+}
+.insight-card .card-icon svg{
+  width:28px;
+  height:28px;
+}
+.insight-card p{
+  font-size:15px;
+  font-weight:600;
+}
+
+/* セクションの締めに置く、控えめなテキストリンク型CTA。
+   ボタンではなくリンクにすることで、押し売り感を出さずに次の行動を促す */
+.cta-inline{ text-align:center; margin-top:var(--space-xl); }
+.cta-inline a{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:14px;
+  color:var(--color-ink);
+  border-bottom:1px solid var(--color-line-strong);
+  padding-bottom:2px;
+  transition:color .15s, border-color .15s;
+}
+.cta-inline a:hover{ color:var(--color-accent); border-color:var(--color-accent); }
+
+/* 信頼が高まったタイミング（改善事例の直後）に置く、中間CTAバナー */
+.cta-banner{
+  background:var(--color-accent-soft);
+  border-radius:var(--radius-l);
+  padding:var(--space-xl) var(--space-lg);
+  text-align:center;
+  margin-top:var(--space-2xl);
+}
+.cta-banner h3{
+  font-family:var(--font-display);
+  font-size:clamp(19px,3vw,24px);
+  margin-bottom:8px;
+  text-wrap:balance;
+}
+.cta-banner p{
+  color:var(--color-ink-soft);
+  font-size:14px;
+  margin-bottom:var(--space-md);
+  max-width:48ch;
+  margin-inline:auto;
+}
+
+/* =========================================================================
+   3. サンプルレポート
+   ========================================================================= */
+.report-panel{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:var(--space-lg);
+}
+@media (min-width:900px){
+  .report-panel{ grid-template-columns:1.1fr .9fr; align-items:start; }
+}
+
+.report-annotated{
+  border:1px dashed var(--color-line-strong);
+  border-radius:var(--radius-m);
+  padding:var(--space-lg);
+  display:flex;
+  flex-direction:column;
+  gap:var(--space-md);
+  background:var(--color-paper);
+}
+.report-row{ display:flex; flex-direction:column; gap:6px; }
+.report-tag{
+  align-self:flex-start;
+  font-size:11.5px;
+  font-weight:600;
+  letter-spacing:.04em;
+  padding:3px 10px;
+  border-radius:var(--radius-s);
+  background:var(--color-accent-soft);
+  color:var(--color-accent);
+}
+.report-row p{ font-size:14px; margin:0; color:var(--color-ink); }
+
+/* サンプルレポート紹介用ビジュアル（複数ページが少し重なって並んだ構図の
+   1枚絵）。fit:containで、カードの端が切れないようにしている */
+.report-thumbs{
+  border:1px solid var(--color-line);
+  border-radius:var(--radius-m);
+  background:var(--color-paper-alt);
+  overflow:hidden;
+}
+.report-thumbs img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:contain;
+  display:block;
+}
+.report-caption{
+  font-size:12.5px;
+  color:var(--color-ink-faint);
+  margin-top:var(--space-sm);
+}
+
+/* =========================================================================
+   5.5 このサービスはこんな方におすすめです
+   ========================================================================= */
+.fit-checklist{
+  max-width:640px;
+  margin-inline:auto;
+  border:1px solid var(--color-line);
+  border-radius:var(--radius-m);
+  overflow:hidden;
+  background:var(--color-paper);
+}
+.fit-item{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:18px 22px;
+  border-top:1px solid var(--color-line);
+  font-size:15px;
+  color:var(--color-ink);
+}
+.fit-item:first-child{ border-top:none; }
+.fit-item .check{
+  flex:none;
+  width:21px; height:21px;
+  color:var(--color-accent);
+}
+
+/* =========================================================================
+   6. 現在ご利用いただけるサービス
+   ========================================================================= */
+/* サービスカードを単独の主役として中央に置き、今後の拡張は
+   カードではなく控えめな一文だけで示す（現在提供中サービスの存在感を優先） */
+.service-card-wrap{
+  max-width:600px;
+  margin-inline:auto;
+}
+.service-card{
+  display:flex;
+  flex-direction:column;
+  gap:var(--space-md);
+  overflow:hidden;
+  padding:var(--space-2xl) var(--space-xl);
+  border-top:3px solid var(--color-accent);
+  position:relative;
+}
+.service-more-note{
+  text-align:center;
+  font-size:12.5px;
+  color:var(--color-ink-faint);
+  margin-top:var(--space-lg);
+}
+.service-card .service-photo{
+  aspect-ratio:16/9;
+  border-radius:var(--radius-s);
+  overflow:hidden;
+  background:var(--color-paper-alt);
+  margin:calc(-1 * var(--space-lg)) calc(-1 * var(--space-lg)) 0;
+}
+.service-card .service-photo img{ width:100%; height:100%; object-fit:cover; }
+
+.service-card-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:var(--space-sm); }
+.service-card-head .card-icon{ margin-bottom:0; }
+.badge--solid{
+  background:var(--color-accent);
+  border-color:var(--color-accent);
+  color:var(--color-accent-ink);
+}
+
+.service-card h3{ font-size:19px; }
+.service-card > p{ font-size:14.5px; }
+
+.service-divider{ height:1px; background:var(--color-line); }
+
+.service-features{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+.service-features li{
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  font-size:14px;
+  color:var(--color-ink);
+}
+.service-features .check{
+  flex:none;
+  width:17px; height:17px;
+  margin-top:2px;
+  color:var(--color-accent);
+}
+
+.service-price-row{ display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
+.service-price{
+  font-family:var(--font-display);
+  font-size:30px;
+  color:var(--color-ink);
+}
+.service-price-note{ font-size:12px; color:var(--color-ink-faint); }
+.service-reassurance{
+  font-size:12.5px;
+  color:var(--color-accent);
+  font-weight:600;
+}
+
+.service-actions{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:var(--space-md);
+  margin-top:var(--space-2xs);
+}
+
+/* =========================================================================
+   7. 実際の改善事例
+   ========================================================================= */
+.case-card{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:var(--space-lg);
+}
+@media (min-width:900px){
+  .case-card{ grid-template-columns:.9fr 1.1fr; }
+}
+.case-visual{
+  aspect-ratio:4/3;
+  border-radius:var(--radius-m);
+  overflow:hidden;
+  background:var(--color-paper-alt);
+  border:1px solid var(--color-line);
+}
+.case-visual img{ width:100%; height:100%; object-fit:cover; }
+.case-anon-note{
+  font-size:12.5px;
+  color:var(--color-ink-faint);
+  margin-top:var(--space-sm);
+}
+
+/* クーポンのBefore/Afterを見せるカード。実際の改善例をもとに、店舗名・地域名は匿名化して掲載 */
+.beforeafter-card{
+  border:1px solid var(--color-line);
+  border-radius:var(--radius-m);
+  padding:var(--space-lg);
+  background:var(--color-paper);
+  display:flex;
+  flex-direction:column;
+  gap:var(--space-sm);
+}
+.ba-row{ padding:var(--space-md); border-radius:var(--radius-s); }
+.ba-before{ background:var(--color-paper-alt); }
+.ba-after{ background:var(--color-accent-soft); border:1px solid var(--color-accent); }
+.ba-tag{
+  display:inline-block;
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.04em;
+  padding:3px 10px;
+  border-radius:var(--radius-full);
+  background:var(--color-line);
+  color:var(--color-ink-soft);
+  margin-bottom:8px;
+}
+.ba-tag--after{ background:var(--color-accent); color:var(--color-accent-ink); }
+.ba-title{ font-size:14.5px; color:var(--color-ink); margin-bottom:4px; line-height:1.6; }
+.ba-price{ font-size:12.5px; color:var(--color-ink-faint); }
+.ba-arrow{ text-align:center; color:var(--color-line-strong); font-size:15px; line-height:1; }
+.ba-point{
+  display:flex;
+  gap:8px;
+  align-items:flex-start;
+  font-size:13px;
+  color:var(--color-ink-soft);
+  padding-top:var(--space-sm);
+  border-top:1px dashed var(--color-line);
+}
+.ba-point svg{ flex:none; width:16px; height:16px; margin-top:1px; color:var(--color-accent); }
+/* 「オーナー様の反応」だけは吹き出し風にし、実際の声であることを視覚的に伝える */
+.flow-quote{
+  background:var(--color-paper);
+  border:1px solid var(--color-line);
+  border-radius:10px;
+  border-top-left-radius:3px;
+  padding:12px 14px;
+  margin-top:2px;
+}
+.flow-quote p{ font-size:14px; color:var(--color-ink); margin:0; }
+
+/* =========================================================================
+   8. 実際にご利用いただいた美容室オーナー様の声
+   ここは「引き算」を意識し、レビューカード1枚だけに絞っている。
+   LINEスクリーンショットは掲載せず、匿名加工済みである旨をテキストで
+   一言添えるにとどめ、余白と文章そのものの説得力を主役にしている。
+   ========================================================================= */
+.review-card{
+  max-width:680px;
+  margin-inline:auto;
+  text-align:center;
+  background:var(--color-paper-alt);
+  border-radius:var(--radius-l);
+  padding:var(--space-2xl) var(--space-xl);
+}
+.testimonial-mark{
+  display:block;
+  font-family:var(--font-display);
+  font-size:48px;
+  line-height:1;
+  color:var(--color-accent);
+  opacity:.55;
+  margin-bottom:-4px;
+}
+.testimonial-quote{
+  font-family:var(--font-display);
+  font-size:clamp(19px,2.6vw,25px);
+  color:var(--color-ink);
+  line-height:1.75;
+  margin-bottom:18px;
+  text-wrap:balance;
+}
+.testimonial-foot{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-size:13px;
+  color:var(--color-ink-faint);
+}
+.voice-avatar{
+  width:26px; height:26px;
+  border-radius:50%;
+  background:var(--color-line);
+  flex:none;
+}
+.review-note{
+  font-size:12px;
+  color:var(--color-ink-faint);
+  margin:var(--space-md) 0 0;
+}
+
+/* =========================================================================
+   8.5 ご利用後アンケート（客観データ）
+   円グラフは「内訳」ではなく「見出しの数字」を主役にし、一目で
+   メッセージが伝わることを優先。紹介意向は軸が違うため円グラフに
+   含めず、同じ並びの数字カードとして扱っている。
+   ========================================================================= */
+.result-strip{
+  display:grid;
+  grid-template-columns:1fr;
+  max-width:760px;
+  margin:0 auto;
+}
+@media (min-width:768px){
+  .result-strip{ grid-template-columns:repeat(3,1fr); }
+  /* 「実践したい」「利用したい」の2軸のみを主役にする場合の並び */
+  .result-strip.result-strip--2col{ grid-template-columns:repeat(2,1fr); max-width:520px; }
+}
+.result-item{
+  text-align:center;
+  padding:var(--space-lg) var(--space-md);
+  border-top:1px solid var(--color-line);
+}
+.result-item:first-child{ border-top:none; }
+@media (min-width:768px){
+  .result-item{ border-top:none; border-left:1px solid var(--color-line); }
+  .result-item:first-child{ border-left:none; }
+}
+.survey-donut{
+  --pct:50;
+  width:88px; height:88px;
+  border-radius:50%;
+  margin:0 auto 14px;
+  background:conic-gradient(var(--color-accent) calc(var(--pct)*1%), var(--color-line) 0);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+.survey-donut::before{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border-radius:50%;
+  background:var(--color-paper);
+}
+.survey-donut span{
+  position:relative;
+  font-family:var(--font-display);
+  font-size:19px;
+  color:var(--color-ink);
+}
+.result-big{
+  font-family:var(--font-display);
+  font-size:38px;
+  color:var(--color-ink);
+  margin:0 0 14px;
+  line-height:1;
+}
+.result-headline{ font-size:14px; font-weight:600; color:var(--color-ink); margin:0 0 3px; }
+.result-sub{ font-size:11.5px; color:var(--color-ink-faint); margin:0; }
+
+/* 紹介意向（別軸のデータ）は、円グラフと並べず、ワンポイントの吹き出しとして
+   独立させることで「浮いて見える」問題を解消している */
+.result-callout{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  max-width:420px;
+  margin:var(--space-xl) auto 0;
+  padding:12px 22px;
+  border-radius:var(--radius-full);
+  background:var(--color-accent-soft);
+  color:var(--color-accent);
+}
+.result-callout svg{ flex:none; width:18px; height:18px; }
+.result-callout p{
+  margin:0;
+  font-size:13px;
+  color:var(--color-ink);
+}
+.result-callout strong{ color:var(--color-accent); font-family:var(--font-display); font-size:15px; }
+
+/* =========================================================================
+   9. なぜ、このサービスを作ったのか（ストーリー）
+   1カラムの読み物として構成。冒頭に小さなイラスト＋名前の
+   「バイライン」を置き、文章より先に「人となり」が伝わるようにしている。
+   ========================================================================= */
+.story{
+  max-width:640px;
+  margin-inline:auto;
+}
+.story > .eyebrow, .story > h2{ text-align:center; }
+.story > h2{ margin-bottom:var(--space-lg); }
+
+.story-byline{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  margin-bottom:var(--space-xl);
+}
+/* 円形の背景・枠は持たせず、イラストをそのまま自然に配置する */
+.story-portrait{
+  width:88px;
+  height:88px;
+  flex:none;
+}
+.story-portrait img{ width:100%; height:100%; object-fit:contain; }
+.story-name{
+  font-family:var(--font-display);
+  font-size:15px;
+  color:var(--color-ink);
+  margin:0;
+}
+.story-role{
+  font-size:12px;
+  color:var(--color-ink-faint);
+  margin:0;
+}
+
+.story-body p{
+  font-size:16px;
+  color:var(--color-ink);
+  margin-bottom:var(--space-md);
+}
+
+/* =========================================================================
+   10. これから、できるようになること
+   ========================================================================= */
+.future-card{
+  cursor:default; /* クリックできる印象を与えないため、通常カーソルのまま */
+}
+.future-card .badge{ margin-bottom:var(--space-sm); }
+
+/* =========================================================================
+   12. よくある質問
+   ========================================================================= */
+.faq-list{ max-width:760px; }
+
+/* =========================================================================
+   13. お問い合わせ（LINE）
+   ========================================================================= */
+.contact-panel{
+  text-align:center;
+  max-width:520px;
+  margin-inline:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:var(--space-md);
+}
+.contact-panel .btn{ min-width:260px; }
+.contact-note{
+  font-size:12.5px;
+  color:var(--color-ink-faint);
+  line-height:1.9;
+}

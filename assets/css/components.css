@@ -1,0 +1,478 @@
+/* ==========================================================================
+   components.css
+   --------------------------------------------------------------------------
+   サイト内で繰り返し使う「部品（コンポーネント）」のスタイルです。
+   ヘッダー／フッター／ボタン／カード／バッジ／アコーディオン／
+   フローティングボタンなど、ページを問わず使い回すパーツをまとめています。
+   ========================================================================== */
+
+/* =========================================================================
+   ボタン
+   ========================================================================= */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:var(--space-2xs);
+  padding:14px 28px;
+  border-radius:var(--radius-full);
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:.03em;
+  white-space:nowrap;
+  transition:transform .18s var(--ease-standard), box-shadow .18s var(--ease-standard), background-color .18s var(--ease-standard);
+}
+.btn:hover{ transform:translateY(-1px); }
+.btn:active{ transform:translateY(0); }
+
+.btn--primary{
+  background:var(--color-accent);
+  color:var(--color-accent-ink);
+  box-shadow:var(--shadow-pop);
+}
+.btn--primary:hover{ background:var(--color-accent-dark); }
+
+.btn--outline{
+  background:transparent;
+  color:var(--color-ink);
+  border:1px solid var(--color-line-strong);
+}
+.btn--outline:hover{ border-color:var(--color-ink); }
+
+.btn--lg{ padding:17px 36px; font-size:16px; }
+.btn--sm{ padding:9px 18px; font-size:13px; }
+.btn--block{ width:100%; }
+
+/* =========================================================================
+   スキップリンク
+   キーボード操作・スクリーンリーダー利用者が、ヘッダーのナビゲーションを
+   毎回読み飛ばして本文へ直接移動できるようにするリンクです。
+   普段は画面外に隠れており、Tabキーでフォーカスされた時だけ表示されます。
+   ========================================================================= */
+.skip-link{
+  position:absolute;
+  top:-100%;
+  left:var(--space-md);
+  z-index:200;
+  background:var(--color-ink);
+  color:var(--color-accent-ink);
+  padding:12px 20px;
+  border-radius:var(--radius-s);
+  font-size:14px;
+  transition:top .2s var(--ease-standard);
+}
+.skip-link:focus{
+  top:var(--space-sm);
+}
+
+/* =========================================================================
+   ヘッダー / ナビゲーション
+   ========================================================================= */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:var(--header-height);
+  display:flex;
+  align-items:center;
+  background:color-mix(in srgb, var(--color-paper) 88%, transparent);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid transparent;
+  transition:border-color .25s var(--ease-standard), background-color .25s var(--ease-standard);
+}
+/* JSでスクロールを検知すると is-scrolled が付与され、下線が表示されます */
+.site-header.is-scrolled{
+  border-bottom-color:var(--color-line);
+}
+
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:var(--space-md);
+}
+
+/* ロゴ（画像ではなくテキスト＋アイコンで実装。文言修正が容易です） */
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:var(--font-display);
+  font-size:19px;
+  font-weight:600;
+  letter-spacing:.03em;
+  color:var(--color-ink);
+}
+.brand-mark{ color:var(--color-accent); flex:none; }
+
+/* PC用の横並びナビ。スマホでは非表示にし、ハンバーガーメニューに切り替え */
+.site-nav{
+  display:none;
+  align-items:center;
+  gap:var(--space-lg);
+  font-size:14.5px;
+}
+.site-nav a:not(.btn){
+  color:var(--color-ink-soft);
+  transition:color .15s;
+}
+.site-nav a:not(.btn):hover{ color:var(--color-ink); }
+
+@media (min-width:900px){
+  .site-nav{ display:flex; }
+  .nav-toggle{ display:none; }
+}
+
+/* ハンバーガーボタン（スマホ表示のみ） */
+.nav-toggle{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+  width:40px;
+  height:40px;
+  align-items:center;
+}
+.nav-toggle span{
+  width:22px;
+  height:2px;
+  background:var(--color-ink);
+  border-radius:2px;
+  transition:transform .25s var(--ease-standard), opacity .2s;
+}
+/* メニューを開いた時（[aria-expanded="true"]）は「×」の形に変形 */
+.nav-toggle[aria-expanded="true"] span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+/* スマホ用ドロップダウンメニュー本体 */
+@media (max-width:899.98px){
+  .site-nav{
+    position:fixed;
+    inset:var(--header-height) 0 auto 0;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    background:var(--color-paper);
+    border-bottom:1px solid var(--color-line);
+    padding:var(--space-sm) var(--space-md) var(--space-lg);
+    box-shadow:var(--shadow-card);
+    transform:translateY(-8px);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s var(--ease-standard), transform .2s var(--ease-standard);
+  }
+  .site-nav.is-open{
+    transform:translateY(0);
+    opacity:1;
+    pointer-events:auto;
+  }
+  .site-nav a:not(.btn){
+    padding:14px 4px;
+    border-bottom:1px solid var(--color-line);
+    font-size:15.5px;
+  }
+  .site-nav .btn{ margin-top:var(--space-sm); }
+}
+
+/* =========================================================================
+   カード共通スタイル
+   ========================================================================= */
+.card{
+  background:var(--color-paper);
+  border:1px solid var(--color-line);
+  border-radius:var(--radius-m);
+  padding:var(--space-lg);
+}
+
+/* アイコン付きカードの中の丸いアイコン枠 */
+.card-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  border-radius:var(--radius-full);
+  background:var(--color-accent-soft);
+  color:var(--color-accent);
+  margin-bottom:var(--space-sm);
+}
+.card-icon svg{ width:22px; height:22px; }
+
+.card h3{ margin-bottom:6px; font-size:16.5px; }
+.card p{ font-size:14px; margin:0; }
+
+/* まだ提供していない（構想中）サービス用の、控えめなカード表現 */
+.card--future{
+  border-style:dashed;
+  background:transparent;
+}
+.card--future .card-icon{
+  background:transparent;
+  border:1px solid var(--color-line-strong);
+  color:var(--color-ink-faint);
+}
+
+/* =========================================================================
+   バッジ
+   ========================================================================= */
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  font-size:11.5px;
+  font-weight:600;
+  letter-spacing:.04em;
+  padding:4px 11px;
+  border-radius:var(--radius-full);
+  border:1px solid var(--color-line-strong);
+  color:var(--color-ink-faint);
+}
+.badge--price{
+  border-color:var(--color-accent);
+  color:var(--color-accent);
+  background:var(--color-accent-soft);
+}
+
+/* =========================================================================
+   アコーディオン（よくある質問で使用／<details>要素をベースに実装）
+   <details> はJS不要でキーボード操作にも対応できるため採用しています。
+   ========================================================================= */
+.accordion-item{
+  border-bottom:1px solid var(--color-line);
+}
+.accordion-item summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:var(--space-md);
+  padding:20px 4px;
+  cursor:pointer;
+  font-size:15.5px;
+  font-weight:600;
+  list-style:none; /* Firefoxの三角マーカーを消す */
+}
+.accordion-item summary::-webkit-details-marker{ display:none; } /* Safari/Chromeのマーカーを消す */
+
+.accordion-icon{
+  flex:none;
+  width:22px;
+  height:22px;
+  position:relative;
+}
+.accordion-icon::before,
+.accordion-icon::after{
+  content:"";
+  position:absolute;
+  top:50%; left:50%;
+  background:var(--color-ink);
+  transform:translate(-50%,-50%);
+  transition:transform .2s var(--ease-standard), opacity .2s;
+}
+.accordion-icon::before{ width:14px; height:1.5px; }
+.accordion-icon::after{ width:1.5px; height:14px; }
+/* 開いている状態（[open]）では「＋」が「－」に変わる */
+details[open] .accordion-icon::after{ opacity:0; }
+
+.accordion-item .answer{
+  padding:0 4px 22px;
+  font-size:14.5px;
+  max-width:64ch;
+}
+
+/* =========================================================================
+   ステップ／タイムライン（ご利用の流れ、改善事例で使用）
+   ========================================================================= */
+.timeline{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
+.timeline-step{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:var(--space-md);
+  padding-block:var(--space-md);
+  border-top:1px solid var(--color-line);
+}
+.timeline-step:first-child{ border-top:none; padding-top:0; }
+.timeline-step .num{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:36px;
+  height:36px;
+  border-radius:var(--radius-full);
+  border:1px solid var(--color-ink);
+  font-family:var(--font-display);
+  font-size:14px;
+}
+.timeline-step h3{ margin-bottom:4px; font-size:16px; }
+.timeline-step p{ font-size:14px; margin:0; }
+
+/* 改善事例セクション専用：分析前→提案→変更→コメント の4ステップ表示。
+   「ご利用の流れ」と同じ番号付き丸を使い、ストーリーとして順を追える
+   視線誘導にしている（線でつながっているのを見せることで一連の流れを強調） */
+.flow{ display:flex; flex-direction:column; }
+.flow-step{
+  display:grid;
+  grid-template-columns:32px 1fr;
+  gap:14px;
+  position:relative;
+  padding-bottom:28px;
+}
+.flow-step:last-child{ padding-bottom:0; }
+.flow-num{
+  width:32px; height:32px;
+  border-radius:50%;
+  border:1px solid var(--color-ink);
+  background:var(--color-paper);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--font-display);
+  font-size:13px;
+  position:relative;
+  z-index:1;
+  flex:none;
+}
+.flow-step:not(:last-child)::before{
+  content:"";
+  position:absolute;
+  left:15px;
+  top:32px;
+  bottom:-28px;
+  width:1px;
+  background:var(--color-line-strong);
+}
+.flow-step .flow-label{
+  display:block;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.05em;
+  color:var(--color-accent);
+  margin-bottom:4px;
+}
+.flow-step p{ font-size:14.5px; margin:0; }
+
+/* =========================================================================
+   吹き出し（お客様の声）
+   ========================================================================= */
+.quote-card{
+  background:var(--color-paper-alt);
+  border:1px solid var(--color-line);
+  border-radius:var(--radius-m);
+  border-top-left-radius:4px;
+  padding:var(--space-lg);
+}
+.quote-card p{
+  font-size:14.5px;
+  color:var(--color-ink);
+  margin-bottom:var(--space-sm);
+}
+.quote-card footer{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:12.5px;
+  color:var(--color-ink-faint);
+}
+
+/* =========================================================================
+   フッター
+   ========================================================================= */
+.site-footer{
+  border-top:1px solid var(--color-line);
+  padding-block:var(--space-2xl) var(--space-xl);
+}
+.footer-inner{
+  display:flex;
+  flex-direction:column;
+  gap:var(--space-lg);
+}
+/* ページを読み終えた最後にもう一度、ブランドの立ち位置を言い切る一文 */
+.footer-tagline{
+  font-family:var(--font-display);
+  font-size:clamp(17px,2.2vw,20px);
+  color:var(--color-ink);
+  max-width:42ch;
+  text-wrap:balance;
+}
+.footer-nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--space-md) var(--space-lg);
+  font-size:13.5px;
+  color:var(--color-ink-soft);
+}
+.footer-bottom{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:var(--space-sm);
+  font-size:12px;
+  color:var(--color-ink-faint);
+  padding-top:var(--space-lg);
+  border-top:1px solid var(--color-line);
+}
+
+/* =========================================================================
+   スマホ用フローティングLINEボタン
+   PCではヘッダーに常設CTAがあるため非表示にしています。
+   ========================================================================= */
+.floating-cta{
+  position:fixed;
+  left:var(--space-md);
+  right:var(--space-md);
+  bottom:var(--space-md);
+  bottom:calc(var(--space-md) + env(safe-area-inset-bottom));
+  z-index:90;
+  transition:opacity .25s var(--ease-standard), transform .25s var(--ease-standard);
+}
+.floating-cta .btn{
+  width:100%;
+  box-shadow:var(--shadow-pop);
+}
+@media (min-width:900px){
+  .floating-cta{ display:none; }
+}
+/* お問い合わせセクション（本来のCTA）が画面内に入ったら、
+   フッターやそのCTAと重ならないよう、フローティングボタンを一時的に隠す
+   （main.js の IntersectionObserver と連動） */
+.floating-cta.is-hidden{
+  opacity:0;
+  transform:translateY(12px);
+  pointer-events:none;
+}
+
+/* =========================================================================
+   スクロールで要素をフェードインさせる仕組み（assets/js/fade-in.js と連動）
+   [data-reveal] を付けた要素は、初期状態で少し下＆透明にしておき、
+   画面内に入ったタイミングで .is-visible が付与され元の状態に戻ります。
+   ========================================================================= */
+[data-reveal]{
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity .7s var(--ease-standard), transform .7s var(--ease-standard);
+}
+[data-reveal].is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* =========================================================================
+   印刷／PDF書き出し用のスタイル
+   スクロールで表示される演出（[data-reveal]）は、印刷やPDF化の際は
+   スクロール操作が発生しないため、そのままだと透明なまま出力されてしまう。
+   そのため印刷時は常に「表示済み」の状態を強制する。
+   ========================================================================= */
+@media print{
+  [data-reveal]{
+    opacity:1 !important;
+    transform:none !important;
+  }
+  .floating-cta{ display:none !important; }
+  .site-header{ position:static !important; }
+}

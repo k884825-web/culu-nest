@@ -1,0 +1,677 @@
+<!doctype html>
+<!--
+  ============================================================================
+  culu nest 公式サイト トップページ（index.html）
+  ============================================================================
+  承認済みの設計提案書（13セクション構成）に基づいて実装しています。
+
+  ▼ このファイルの読み方
+    ページは「① ...」のような見出しコメントで13のセクションに区切られて
+    います。文章だけを直したい場合は、該当セクション内のテキストを
+    書き換えてください。見た目（色・余白・レイアウト）は assets/css/ 配下の
+    CSSファイルで管理しています。
+
+  ▼ 画像について
+    ヒーロー・サンプルレポート・プロフィールは実画像に差し替え済みです
+    （assets/img/hero, reports, people 配下）。今後さらに差し替える場合も
+    該当する <img src="..."> のパスを書き換えるだけでOKです。
+
+  ▼ LINE公式アカウントのURLについて
+    サイト内のCTAボタンは、すべて一旦ページ内の「お問い合わせ」セクション
+    （#contact）へスクロールする作りになっており、実際のLINE外部リンクは
+    #contact セクション内の1箇所だけに設定してあります（現在: lin.ee/zaA6CUR）。
+    URLが変わった場合も、そこだけ書き換えれば全体に反映されます。
+  ============================================================================
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FAF9F6">
+<title>culu nest（キュルネスト）| ホットペッパー分析から始める、美容室のための経営サポート</title>
+<meta name="description" content="culu nestは、ホットペッパービューティー分析を入口に、美容室オーナーが自分たちで改善できるようになることを目指す経営サポートサービスです。売り込みではなく、気づきをお届けします。">
+
+<!-- OGP / SNSシェア用（TODO: 実際のドメインが決まったら og:url と og:image の絶対URLを設定してください） -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="culu nest">
+<meta property="og:title" content="culu nest | ホットペッパー分析から始める、美容室のための経営サポート">
+<meta property="og:description" content="売り込みではなく、気づきを届ける。ホットペッパービューティー分析から始まる、美容室オーナーのための経営サポートです。">
+<meta property="og:image" content="assets/img/og/ogp.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+<!-- CSS読み込み（役割ごとに4ファイルに分割。詳細は各ファイル冒頭のコメント参照） -->
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/home.css">
+
+<!-- 構造化データ（検索エンジン向け）。住所・電話番号は未確定のため未記載です。
+     確定次第 "telephone" "address" 等を追加してください。 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "culu nest",
+  "description": "ホットペッパービューティー分析を中心とした、美容室向け経営サポートサービス",
+  "areaServed": "JP"
+}
+</script>
+</head>
+<body>
+
+<!-- キーボード操作・スクリーンリーダー向けのスキップリンク（Tab移動で最初に出現） -->
+<a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
+
+<!-- ============ ヘッダー ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#hero" class="brand" aria-label="culu nest トップへ戻る">
+      <svg class="brand-mark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 19c-.5-5.2 3-9.7 8.2-10.7C13.7 12.6 10.4 16.5 6 19Z"/>
+      </svg>
+      culu nest
+    </a>
+
+    <nav class="site-nav" id="siteNav" aria-label="サイト内ナビゲーション">
+      <a href="#services">サービス</a>
+      <a href="#case-study">改善事例</a>
+      <a href="#voices">お客様の声</a>
+      <a href="#faq">よくある質問</a>
+      <a href="#contact" class="btn btn--primary btn--sm">LINEで相談する</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main-content">
+
+<!-- ============ ① ファーストビュー ============ -->
+<section class="hero" id="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy" data-reveal>
+      <p class="eyebrow eyebrow--hero">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M20 5 8 13m12 6L8 11"/></svg>
+        美容室向け ホットペッパービューティー分析｜<span class="nowrap">culu nest</span>
+      </p>
+      <h1>もっと良くできる。<br>そのヒントを、一緒に<br class="break-sm">見つけませんか？</h1>
+      <p class="hero-sub">ホットペッパービューティーの掲載データをプロが分析し、あなたのサロンに合った改善のヒントをレポートでお届けします。</p>
+      <div class="hero-actions">
+        <div class="hero-cta-row">
+          <a href="#contact" class="btn btn--primary btn--lg">LINEで相談する</a>
+          <a href="#report" class="hero-secondary-link">サンプルレポートを見てみる ↓</a>
+        </div>
+        <p class="hero-note">LINEでの事前相談は無料です。しつこい営業は行いません。</p>
+      </div>
+    </div>
+
+    <div class="hero-visual" data-reveal>
+      <!-- ヒーロー原本（hero.png）には見出しテキストが焼き込まれているため、
+           サイト本体の見出しと重複しないよう、机上のタブレット（分析レポート）が
+           主役になる範囲だけを切り出して使用しています -->
+      <img src="assets/img/hero/hero-crop.jpg" alt="サロンの受付デスクに置かれたタブレットに、分析レポートのサマリーが表示されている様子" decoding="async" fetchpriority="high">
+    </div>
+  </div>
+
+  <a href="#pain-points" class="scroll-cue" aria-label="次のセクションへスクロール"><span></span></a>
+</section>
+
+<!-- ============ ② こんなお悩みありませんか？ ============ -->
+<section class="section" id="pain-points">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">よくある声</p>
+      <h2>こんなお悩み、ありませんか？</h2>
+    </div>
+
+    <div class="grid grid--3" data-reveal>
+      <div class="pain-card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M12 20V4M20 20v-7"/></svg></span>
+        <p>ホットペッパーの数字、正直よく分からない</p>
+      </div>
+      <div class="pain-card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4V5Z"/></svg></span>
+        <p>口コミが、なかなか増えない</p>
+      </div>
+      <div class="pain-card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9a8 8 0 0 1 14-5M20 9V4h-5"/><path d="M20 15a8 8 0 0 1-14 5M4 15v5h5"/></svg></span>
+        <p>新規は来るのに、リピートに繋がらない</p>
+      </div>
+      <div class="pain-card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 7l-3 6a3 3 0 0 0 6 0L6 7Zm12 0-3 6a3 3 0 0 0 6 0l-3-6Z"/></svg></span>
+        <p>他店と何が違うのか、うまく言えない</p>
+      </div>
+      <div class="pain-card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3h6a2 2 0 0 1 2 2v6l-9 9-8-8 9-9Z"/><circle cx="15" cy="9" r="1.3" fill="currentColor" stroke="none"/></svg></span>
+        <p>コンサルは高いし、頼むほどでもない</p>
+      </div>
+      <div class="pain-card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+        <p>忙しくて、分析する時間がない</p>
+      </div>
+    </div>
+
+    <div class="cta-inline" data-reveal>
+      <a href="#contact">ひとつでも当てはまったら、まずは気軽にご相談ください →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ③ サンプルレポート ============ -->
+<section class="section section--alt" id="report">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">サンプルレポート</p>
+      <h2>実際のレポート、見てみませんか？</h2>
+      <p class="lead">culu nestがお渡ししているレポートの一部をご紹介します。数字を並べるだけでなく、「次に何をすればいいか」まで、具体的にお伝えしています。</p>
+    </div>
+
+    <div class="report-panel" data-reveal>
+      <div class="report-annotated">
+        <div class="report-row">
+          <span class="report-tag">現状分析</span>
+          <p>掲載写真・メニュー・価格帯が、周辺の競合店と比べてどう見えているかを整理します。</p>
+        </div>
+        <div class="report-row">
+          <span class="report-tag">改善提案</span>
+          <p>反応率の低いクーポンやメニュー名について、具体的な代替案とあわせてご提案します。</p>
+        </div>
+        <div class="report-row">
+          <span class="report-tag">優先順位</span>
+          <p>効果が出やすいものから順に、着手すべきポイントをリストアップしてお渡しします。</p>
+        </div>
+      </div>
+
+      <div>
+        <!-- 実際にお渡ししているレポートの構成をもとにした、サンプルレポート紹介用ビジュアル -->
+        <div class="report-thumbs">
+          <img src="assets/img/reports/report-optimized.jpg" alt="culu nestの分析レポートのサンプル。エグゼクティブサマリーやクーポン改善案などが3ページ分紹介されている" loading="lazy" decoding="async">
+        </div>
+        <p class="report-caption">実際にお渡ししているレポートの構成をもとに、サンプル値で再現しています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ④ 分析すると、こんなことが分かります ============ -->
+<section class="section" id="insights">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">分析でわかること</p>
+      <h2>分析すると、こんなことが分かります</h2>
+      <p class="lead">「自分の店なら、何がわかるんだろう」——そう思った方へ。専門用語は使わず、実際に見えてくることをそのままお伝えします。</p>
+    </div>
+
+    <div class="grid grid--3" data-reveal>
+      <div class="insight-card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 7l-3 6a3 3 0 0 0 6 0L6 7Zm12 0-3 6a3 3 0 0 0 6 0l-3-6Z"/></svg></span>
+        <p>競合店との違い</p>
+      </div>
+      <div class="insight-card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M8 9a4 4 0 1 1 8 0c0 2-1.5 3-2 4.5-.3.8-.3 1.5-.3 1.5h-3.4s0-.7-.3-1.5C9.5 12 8 11 8 9Z"/></svg></span>
+        <p>クーポンの改善点</p>
+      </div>
+      <div class="insight-card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.4 6 .8-4.3 4.1 1 6-5.3-2.9-5.3 2.9 1-6-4.3-4.1 6-.8 2.6-5.4Z"/></svg></span>
+        <p>伝わっていない自店の強み</p>
+      </div>
+      <div class="insight-card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4V5Z"/></svg></span>
+        <p>Google口コミの傾向</p>
+      </div>
+      <div class="insight-card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 5h11l-2.5 3.5L16 12H5"/></svg></span>
+        <p>改善すべき優先順位</p>
+      </div>
+      <div class="insight-card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="6" rx="3"/><circle cx="8" cy="12" r="2.2" fill="currentColor" stroke="none"/></svg></span>
+        <p>すぐやることと、じっくりやること</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ⑤ culu nestができること ============ -->
+<section class="section section--alt" id="about">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">culu nestに相談すると</p>
+      <h2>変わるのは、<br>数字だけじゃありません</h2>
+      <p class="lead">culu nestは、答えを売るのではなく、変わるきっかけを届けるサービスです。</p>
+    </div>
+
+    <div class="grid grid--4" data-reveal>
+      <div class="card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <h3>「なんとなく」が<br>「はっきり」に変わる</h3>
+        <p>感覚で判断していた数字を、根拠を持って語れるようになります。</p>
+      </div>
+      <div class="card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-9"/><path d="M15 6h6v6"/></svg></span>
+        <h3>自分たちの手で、改善を続けられる</h3>
+        <p>分析結果をもとに、スタッフ同士で次の一手を考えられるようになります。</p>
+      </div>
+      <div class="card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3Z"/></svg></span>
+        <h3>必要のない提案に振り回されない</h3>
+        <p>過剰な施策や高額なオプションをおすすめすることはありません。</p>
+      </div>
+      <div class="card">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="1.4"/><rect x="17" y="13" width="4" height="6" rx="1.4"/></svg></span>
+        <h3>ひとりで悩まなくて済む</h3>
+        <p>迷ったときに相談できる相手が、いつでもそばにいる安心感があります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ⑤.5 このサービスはこんな方におすすめです ============ -->
+<section class="section" id="fit">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal>
+      <p class="eyebrow">こんな方におすすめです</p>
+      <h2>ひとつでも当てはまったら</h2>
+    </div>
+
+    <ul class="fit-checklist" data-reveal>
+      <li class="fit-item">
+        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>
+        ホットペッパーを、もっと活かしきれていない気がする
+      </li>
+      <li class="fit-item">
+        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>
+        他店と何が違うのか、はっきり説明できるようになりたい
+      </li>
+      <li class="fit-item">
+        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>
+        コンサルを頼むほどではないが、今より良くしたい
+      </li>
+      <li class="fit-item">
+        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>
+        分析結果をもとに、自分たちの手で改善していきたい
+      </li>
+      <li class="fit-item">
+        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>
+        何から手をつければいいか、正直分からない
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ ⑥ 現在ご利用いただけるサービス ============ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">サービス</p>
+      <h2>現在ご利用いただけるサービス</h2>
+      <p class="lead">現在は、ホットペッパービューティー分析を提供しています。</p>
+    </div>
+
+    <div class="service-card-wrap" data-reveal>
+      <div class="card service-card">
+        <div class="service-card-head">
+          <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M20 5 8 13m12 6L8 11"/></svg></span>
+          <span class="badge badge--solid">現在ご提供中</span>
+        </div>
+
+        <h3>ホットペッパービューティー分析</h3>
+        <p>掲載データをもとに、現状の見え方・改善ポイント・優先順位をレポートにまとめてお届けします。次に何をすべきかまで、具体的にわかります。</p>
+
+        <div class="service-divider"></div>
+
+        <ul class="service-features">
+          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>掲載データの現状分析</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>改善提案レポート（PDF）</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>優先順位付きアクションリスト</li>
+        </ul>
+
+        <div class="service-divider"></div>
+
+        <div class="service-price-row">
+          <span class="service-price">¥10,000</span>
+          <span class="service-price-note">（税込・単発）</span>
+        </div>
+        <p class="service-reassurance">LINEでの事前相談は無料です</p>
+
+        <div class="service-actions">
+          <a href="#contact" class="btn btn--primary btn--sm">LINEで相談する</a>
+          <a href="#report" class="btn btn--outline btn--sm">サンプルレポートを見る</a>
+        </div>
+      </div>
+
+      <!-- 今後サービスが増えた際の拡張メモ（カードにはせず、控えめなテキストのみ） -->
+      <p class="service-more-note">※Instagram分析・Googleビジネスプロフィール分析（MEO）など、今後のサービスもこちらに追加していきます</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ⑦ 実際の改善事例 ============ -->
+<section class="section section--alt" id="case-study">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">改善事例</p>
+      <h2>実際の改善事例</h2>
+      <p class="lead">分析のあと、実際にどんな変化があったのか。1件ずつ、丁寧にご紹介していきます。</p>
+    </div>
+
+    <div class="card case-card" data-reveal>
+      <div>
+        <!-- 実際のクーポン改善例をもとに、店舗名・地域名を匿名化して再構成 -->
+        <div class="beforeafter-card">
+          <div class="ba-row ba-before">
+            <span class="ba-tag">改善前</span>
+            <p class="ba-title">【人気No.1！】カット＋韓国風カラー＋トリートメント</p>
+          </div>
+          <div class="ba-arrow" aria-hidden="true">↓</div>
+          <div class="ba-row ba-after">
+            <span class="ba-tag ba-tag--after">改善後</span>
+            <p class="ba-title">【駅チカ・SNSで人気】韓国風カラー×潤艶トリートメント</p>
+          </div>
+          <p class="ba-price" style="text-align:center;">価格は変更なし（15,510円 → 12,100円）</p>
+          <div class="ba-point">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M8 9a4 4 0 1 1 8 0c0 2-1.5 3-2 4.5-.3.8-.3 1.5-.3 1.5h-3.4s0-.7-.3-1.5C9.5 12 8 11 8 9Z"/></svg>
+            <p style="margin:0;">最寄り駅からの近さと「SNSで人気」という安心ワードを追加。反応率の高いクーポンを、より見つけやすい形に強化しました。</p>
+          </div>
+        </div>
+        <p class="case-anon-note">※実際の改善例をもとに、店舗名・地域名は伏せて再構成しています</p>
+      </div>
+
+      <div>
+        <span class="badge" style="margin-bottom:12px;">事例 01</span>
+        <div class="flow">
+          <div class="flow-step">
+            <span class="flow-num" aria-hidden="true">1</span>
+            <div><span class="flow-label">分析前</span>
+            <p>反応が伸び悩んでいる、あるクーポンがありました。「人気」を示すだけの、やや抽象的なタイトルでした。</p></div>
+          </div>
+          <div class="flow-step">
+            <span class="flow-num" aria-hidden="true">2</span>
+            <div><span class="flow-label">提案内容</span>
+            <p>最寄り駅からの近さと、お客様が安心して選べる言葉を加えることをご提案しました。</p></div>
+          </div>
+          <div class="flow-step">
+            <span class="flow-num" aria-hidden="true">3</span>
+            <div><span class="flow-label">実際に変更したこと</span>
+            <p>ご提案をもとに、クーポンのタイトルを変更されました。</p></div>
+          </div>
+          <div class="flow-step">
+            <span class="flow-num" aria-hidden="true">4</span>
+            <div><span class="flow-label">オーナー様のコメント</span>
+            <div class="flow-quote">
+              <p>スタッフの皆さんにも納得いただきながら進められ、「とても良い」と前向きなお言葉をいただきました。</p>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-banner" data-reveal>
+      <h3>同じような変化を、あなたのサロンでも。</h3>
+      <p>まずはLINEで、今の掲載状況について気軽にお話ししませんか？</p>
+      <a href="#contact" class="btn btn--primary">LINEで相談する</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ⑧ お客様の声 ============ -->
+<section class="section" id="voices">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal>
+      <p class="eyebrow">お客様の声</p>
+      <h2>実際にご利用いただいた<br>美容室オーナー様の声</h2>
+    </div>
+
+    <div class="review-card" data-reveal>
+      <span class="testimonial-mark" aria-hidden="true">"</span>
+      <p class="testimonial-quote">スタッフも納得しながらページ作りができているので、とても良いです。今後も是非お願いします。</p>
+      <footer class="testimonial-foot">
+        <span class="voice-avatar" aria-hidden="true"></span>
+        美容室オーナー 様（LINEでのメッセージより）
+      </footer>
+      <p class="review-note">※実際にいただいたLINEメッセージをもとに、匿名加工のうえ掲載しています</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ⑧.5 ご利用後アンケート ============ -->
+<section class="section" id="survey">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal>
+      <p class="eyebrow">客観データ</p>
+      <h2>ご利用後アンケート</h2>
+      <p class="lead" style="margin-inline:auto;">2026年7月時点・5店舗の分析後アンケートより（匿名集計）</p>
+    </div>
+
+    <div class="result-strip result-strip--2col" data-reveal>
+      <div class="result-item">
+        <div class="survey-donut" style="--pct:100;"><span>100%</span></div>
+        <p class="result-headline">「実践したい」と回答</p>
+        <p class="result-sub">すぐ実践したい60%／一部実践したい40%</p>
+      </div>
+      <div class="result-item">
+        <div class="survey-donut" style="--pct:80;"><span>80%</span></div>
+        <p class="result-headline">「利用したい」と回答</p>
+        <p class="result-sub">ぜひ利用したい60%／必要になれば利用したい20%</p>
+      </div>
+    </div>
+
+    <!-- 紹介意向は利用意向とは別軸のため、円グラフではなくワンポイントの吹き出しで補足 -->
+    <div class="result-callout" data-reveal>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 8.6c0 4.4-4.3 7.9-8.8 10.4-4.5-2.5-8.8-6-8.8-10.4a4.8 4.8 0 0 1 8.8-2.7 4.8 4.8 0 0 1 8.8 2.7Z"/></svg>
+      <p><strong>20%</strong>の方は「知り合いにも紹介したい」と回答</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ⑨ なぜ、このサービスを作ったのか ============ -->
+<section class="section section--alt" id="story">
+  <div class="container">
+    <div class="story" data-reveal>
+      <p class="eyebrow">culu nestについて</p>
+      <h2>なぜ、このサービスを<br>作ったのか</h2>
+
+      <!-- 小さめのプロフィールイラスト（線画）＋名前を、本文の前に配置。
+           「親しみやすく相談しやすい人」という印象を、文章より先に伝える役割 -->
+      <div class="story-byline">
+        <div class="story-portrait">
+          <img src="assets/img/people/profile-optimized.png" alt="culu nest 運営者 林 賢一の線画イラスト" loading="lazy" decoding="async">
+        </div>
+        <div>
+          <p class="story-name">林 賢一</p>
+          <p class="story-role">culu nest 運営</p>
+        </div>
+      </div>
+
+      <div class="story-body">
+        <p>美容業界で長く仕事をするなかで、ほんの少し見直しただけで、大きく変わっていくサロンをたくさん見てきました。</p>
+        <p>一方で、高額なコンサルを頼むほどではないけれど、「今より、もう少し良くしたい」と感じているオーナーも、同じくらい多くいらっしゃいました。</p>
+        <p>だからこそ、必要な時にだけ相談でき、分析結果をもとに自分たちの手で改善していける。そんなサービスを作りたいと思いました。</p>
+        <div class="cta-inline" style="text-align:left;">
+          <a href="#contact">よければ、LINEで少しだけお話ししませんか？ →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ⑩ これから、できるようになること ============ -->
+<section class="section" id="upcoming">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">今後の展開</p>
+      <h2>これから、<br>できるようになること</h2>
+      <p class="lead">ホットペッパーの「中」の改善だけでなく、これからは集客の入口そのものを広げていきます。少しずつですが、着実に増やしていく予定です。</p>
+    </div>
+
+    <div class="grid grid--3" data-reveal>
+      <div class="card card--future future-card">
+        <span class="badge">構想中</span>
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2.4"/><path d="M8 7l1.6-2.5h4.8L16 7"/><circle cx="12" cy="13.5" r="3.4"/></svg></span>
+        <h3>Instagram集客分析</h3>
+        <p>投稿とフォロワーの動きを可視化し、集客への活かし方をご提案します。</p>
+      </div>
+      <div class="card card--future future-card">
+        <span class="badge">構想中</span>
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.4 6 .8-4.3 4.1 1 6-5.3-2.9-5.3 2.9 1-6-4.3-4.1 6-.8 2.6-5.4Z"/></svg></span>
+        <h3>Googleビジネスプロフィール<br>分析（MEO）</h3>
+        <p>地図検索やGoogle検索での見え方を分析し、口コミも含めたMEO対策のヒントをお届けします。</p>
+      </div>
+      <div class="card card--future future-card">
+        <span class="badge">構想中</span>
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M12 20V4M20 20v-7"/></svg></span>
+        <h3>経営の数字の見える化</h3>
+        <p>サロン全体の数字を、シンプルに把握できる仕組みをご用意します。</p>
+      </div>
+      <div class="card card--future future-card">
+        <span class="badge">構想中</span>
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9.5" r="2.3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14.6 14.4c2.5.4 4.4 2.4 4.4 5.1"/></svg></span>
+        <h3>スタッフ育成サポート</h3>
+        <p>スタッフの成長を、数字と対話の両方から後押しします。</p>
+      </div>
+      <div class="card card--future future-card">
+        <span class="badge">構想中</span>
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6.5 6.5l2.3 2.3M15.2 15.2l2.3 2.3M17.5 6.5l-2.3 2.3M8.8 15.2l-2.3 2.3"/></svg></span>
+        <h3>AIを活用した経営支援</h3>
+        <p>日々の経営判断を、AIがそっとサポートする仕組みを構想中です。</p>
+      </div>
+      <div class="card card--future future-card">
+        <span class="badge">構想中</span>
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="8" height="8" rx="1.4"/><rect x="13" y="4" width="8" height="5" rx="1.4"/><rect x="13" y="11" width="8" height="9" rx="1.4"/><rect x="3" y="14" width="8" height="6" rx="1.4"/></svg></span>
+        <h3>経営ダッシュボード</h3>
+        <p>サロンの状態が、ひと目で分かるダッシュボードを準備しています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ⑪ ご利用の流れ ============ -->
+<section class="section section--alt" id="flow">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">ご利用の流れ</p>
+      <h2>ご相談から、<br>レポートが届くまで</h2>
+    </div>
+
+    <div class="timeline" style="max-width:640px;" data-reveal>
+      <div class="timeline-step">
+        <span class="num">1</span>
+        <div><h3>LINEで友だち追加</h3><p>まずは気軽に、LINEで友だち追加をお願いします。</p></div>
+      </div>
+      <div class="timeline-step">
+        <span class="num">2</span>
+        <div><h3>ヒアリング（5分程度）</h3><p>お店の状況について、簡単にお伺いします。</p></div>
+      </div>
+      <div class="timeline-step">
+        <span class="num">3</span>
+        <div><h3>データ分析・レポート作成</h3><p>ホットペッパーの掲載データをもとに分析し、レポートにまとめます。</p></div>
+      </div>
+      <div class="timeline-step">
+        <span class="num">4</span>
+        <div><h3>レポートをもとに改善サポート</h3><p>レポートの内容を一緒に確認しながら、次の一歩をサポートします。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ⑫ よくある質問 ============ -->
+<!-- <details>/<summary> を使用したアコーディオン。JS不要でキーボード操作にも対応しています。 -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">ご相談前に</p>
+      <h2>よくある質問</h2>
+    </div>
+
+    <div class="faq-list" data-reveal>
+      <details class="accordion-item">
+        <summary>無料相談だけでもお願いできますか？<span class="accordion-icon" aria-hidden="true"></span></summary>
+        <div class="answer"><p>はい、大丈夫です。LINEでの事前相談は無料ですので、まずはお気軽にご相談ください。</p></div>
+      </details>
+      <details class="accordion-item">
+        <summary>分析サービスの料金を教えてください<span class="accordion-icon" aria-hidden="true"></span></summary>
+        <div class="answer"><p>ホットペッパービューティー分析は、税込10,000円でご案内しています。</p></div>
+      </details>
+      <details class="accordion-item">
+        <summary>契約の縛りはありますか？<span class="accordion-icon" aria-hidden="true"></span></summary>
+        <div class="answer"><p>単発でのご依頼が可能です。継続利用の縛りは設けていません。</p></div>
+      </details>
+      <details class="accordion-item">
+        <summary>どんなお店でも対応できますか？<span class="accordion-icon" aria-hidden="true"></span></summary>
+        <div class="answer"><p>美容室・理容室であれば、規模を問わずご相談いただけます。まずはお気軽にお問い合わせください。</p></div>
+      </details>
+      <details class="accordion-item">
+        <summary>レポートはどのくらいで届きますか？<span class="accordion-icon" aria-hidden="true"></span></summary>
+        <div class="answer"><p>ヒアリング後、目安として1〜2週間程度でお届けしています。混雑状況により前後する場合がございます。</p></div>
+      </details>
+      <details class="accordion-item">
+        <summary>遠方の美容室でも依頼できますか？<span class="accordion-icon" aria-hidden="true"></span></summary>
+        <div class="answer"><p>はい、対応可能です。ご相談から分析・レポートのお届けまで、オンラインで完結します。</p></div>
+      </details>
+      <details class="accordion-item">
+        <summary>分析にあたって、何か準備するものはありますか？<span class="accordion-icon" aria-hidden="true"></span></summary>
+        <div class="answer"><p>特別な準備は必要ありません。現在掲載中のホットペッパーのページを拝見しながら進めますので、まずはお気軽にご相談ください。</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ⑬ お問い合わせ（LINE） ============ -->
+<section class="section section--alt" id="contact">
+  <div class="container">
+    <div class="contact-panel" data-reveal>
+      <p class="eyebrow">お問い合わせ</p>
+      <h2>まずは、<br>話を聞いてみませんか？</h2>
+      <p class="lead" style="margin-inline:auto;">LINEで友だち追加のうえ、お気軽にご相談ください。</p>
+
+      <a href="https://lin.ee/zaA6CUR" class="btn btn--primary btn--lg" target="_blank" rel="noopener">LINEで相談する</a>
+
+      <p class="contact-note">LINEでの事前相談は無料です。分析サービスは税込10,000円です。<br>しつこい営業は行いませんので、ご安心ください。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ フッター ============ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-tagline">売り込みではなく、気づきを届ける。<br>それが、culu nestの約束です。</p>
+
+    <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; align-items:flex-start;">
+      <a href="#hero" class="brand" aria-label="culu nest トップへ戻る">
+        <svg class="brand-mark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 19c-.5-5.2 3-9.7 8.2-10.7C13.7 12.6 10.4 16.5 6 19Z"/>
+        </svg>
+        culu nest
+      </a>
+      <!-- ★ 今後ページ（コラム・PDF配布など）が増えたら、ここにリンクを追加してください -->
+      <nav class="footer-nav" aria-label="フッターナビゲーション">
+        <a href="#services">サービス</a>
+        <a href="#case-study">改善事例</a>
+        <a href="#voices">お客様の声</a>
+        <a href="#faq">よくある質問</a>
+        <a href="#contact">お問い合わせ</a>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 culu nest</p>
+      <p>本サイトは、ホットペッパービューティー分析を中心とした美容室向け経営サポート情報を掲載しています。</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ スマホ用 固定LINEボタン ============ -->
+<div class="floating-cta">
+  <a href="#contact" class="btn btn--primary">LINEで相談する</a>
+</div>
+
+<!-- JS読み込み（defer=HTML解析を止めずに、パース完了後に実行） -->
+<script src="assets/js/fade-in.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

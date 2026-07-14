@@ -1,0 +1,6 @@
+<!-- favicon.svg: ブランドカラーの角丸スクエア＋葉のマーク。色は base.css のアクセントカラー変数と揃えています -->
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="15" fill="#4A5D45"/>
+  <path d="M20 41 C19 27, 32 17, 47 18 C45 31, 34 41, 20 41 Z" fill="#FBFBF9"/>
+  <path d="M20 41 C24 34, 30 27, 40 22" stroke="#4A5D45" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+</svg>

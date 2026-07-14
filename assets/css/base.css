@@ -1,0 +1,187 @@
+/* ==========================================================================
+   base.css
+   --------------------------------------------------------------------------
+   サイト全体の「土台」となるファイルです。
+   ・リセットCSS（ブラウザ標準のスタイル差をなくす）
+   ・デザイントークン（色・フォント・余白・角丸などの共通変数）
+   ・基本タイポグラフィ（見出し・本文などの文字スタイル）
+   を定義しています。
+
+   ★ サイトの配色やフォントを変えたいときは、まずこのファイル上部の
+     :root { ... } の中身を書き換えてください。ページ全体に反映されます。
+   ========================================================================== */
+
+:root{
+
+  /* ------------------------------------------------------------------
+     カラートークン
+     現状は「設計提案書」で承認済みのアクセントカラーA（くすみセージ
+     グリーン）を使用しています。色を変える場合は --color-accent 系の
+     3行だけを書き換えれば、ボタン・リンク・アイコン等すべてに反映されます。
+     ------------------------------------------------------------------ */
+  --color-paper:      #FAF9F6; /* 背景（メイン） */
+  --color-paper-alt:  #F3F1EA; /* 背景（セクションの背景アクセント） */
+  --color-ink:        #201F1C; /* 基本文字色（黒に近いグレー） */
+  --color-ink-soft:   #5B564C; /* サブテキスト・本文色 */
+  --color-ink-faint:  #6A6558; /* キャプション・補足など、さらに薄い文字色（WCAG AA 4.5:1以上を確保） */
+  --color-line:       #E1DCD1; /* 罫線・カード枠線（薄い） */
+  --color-line-strong:#C9C2B2; /* 罫線・カード枠線（やや濃い） */
+
+  --color-accent:      #4A5D45; /* アクセントカラー（くすみセージグリーン） */
+  --color-accent-dark: #384636; /* アクセントの濃色（ホバー時など） */
+  --color-accent-soft: #E7ECE4; /* アクセントの淡色（背景・バッジ用） */
+  --color-accent-ink:  #FBFBF9; /* アクセント背景の上に乗せる文字色 */
+
+  --color-warn-soft:  #E9E2D3; /* 「構想中」バッジなど、控えめな注意色 */
+
+  /* ------------------------------------------------------------------
+     フォント
+     Webフォントは読み込まず、OS標準の高品質な日本語フォントを使用して
+     います（表示速度を優先するための意図的な選択です）。
+     ------------------------------------------------------------------ */
+  --font-display:"Hiragino Mincho ProN","YuMincho","Yu Mincho",serif;
+  --font-body:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;
+
+  /* ------------------------------------------------------------------
+     余白スケール（8pxベース）。すべての margin / padding はここから
+     引用し、バラバラな数値を使わないようにしています。
+     ------------------------------------------------------------------ */
+  --space-3xs: 4px;
+  --space-2xs: 8px;
+  --space-xs:  12px;
+  --space-sm:  16px;
+  --space-md:  24px;
+  --space-lg:  32px;
+  --space-xl:  48px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 132px;
+
+  /* ------------------------------------------------------------------
+     角丸・影・共通レイアウト値
+     ------------------------------------------------------------------ */
+  --radius-s:    6px;
+  --radius-m:    16px;
+  --radius-l:    24px;
+  --radius-full: 999px;
+  --shadow-card: 0 1px 2px rgba(32,31,28,.04), 0 16px 32px -12px rgba(32,31,28,.12);
+  --shadow-pop:  0 8px 24px -6px rgba(32,31,28,.18);
+
+  --header-height: 68px;
+  --container-width: 1140px;
+  --ease-standard: cubic-bezier(.16,.8,.4,1);
+}
+
+/* ---------------------------------------------------------------------
+   リセット
+   --------------------------------------------------------------------- */
+*, *::before, *::after{ box-sizing:border-box; }
+
+html{
+  scroll-behavior:smooth;
+  /* 固定ヘッダー分、アンカーリンクの着地位置を下にずらす */
+  scroll-padding-top: calc(var(--header-height) + 12px);
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  margin:0;
+  background:var(--color-paper);
+  color:var(--color-ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+img, svg{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; background:none; border:none; cursor:pointer; padding:0; }
+ul, ol{ margin:0; padding:0; list-style:none; }
+h1, h2, h3, h4, p, figure{ margin:0; }
+address{ font-style:normal; }
+
+/* フォーカス時のアウトライン（キーボード操作時のみ表示） */
+:focus-visible{
+  outline:2px solid var(--color-accent);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+/* ---------------------------------------------------------------------
+   タイポグラフィ（見出し・本文の基本スタイル）
+   --------------------------------------------------------------------- */
+h1, h2, h3{
+  font-family:var(--font-display);
+  font-weight:600;
+  line-height:1.5;
+  letter-spacing:.02em;
+  text-wrap:balance;
+}
+
+h1{ font-size:clamp(30px, 6.4vw, 52px); line-height:1.45; }
+h2{ font-size:clamp(24px, 4.6vw, 34px); }
+h3{ font-size:clamp(18px, 2.6vw, 21px); }
+
+p{ color:var(--color-ink-soft); }
+
+/* セクション見出しの上に置く、小さなラベルテキスト */
+.eyebrow{
+  display:inline-block;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.14em;
+  color:var(--color-accent);
+  margin-bottom:var(--space-sm);
+}
+
+/* リード文（見出し直下の説明文）用のクラス */
+.lead{
+  font-size:clamp(15px, 1.8vw, 17px);
+  color:var(--color-ink-soft);
+  max-width:56ch;
+}
+
+/* テキストの改行を禁止したい部分（ブランド名が行末で分断されるのを防ぐ等）に使用 */
+.nowrap{ white-space:nowrap; }
+
+/* スマホ幅でのみ改行したい見出しに使用する <br>。
+   text-wrap:balance が単語の途中で折り返してしまう場合に、
+   幅の狭い画面でだけ狙った位置で改行させるための小さな仕組み */
+br.break-sm{ display:none; }
+@media (max-width:640px){
+  br.break-sm{ display:inline; }
+}
+
+/* eyebrowの中にアイコンを並べたい場合（ヒーローで使用）に付与するモディファイア。
+   flexboxにすると長いテキストの折り返し時にアイコンが分離してしまうため、
+   通常のインライン文字送りの中にアイコンを混ぜる形にしている */
+.eyebrow--hero svg{
+  display:inline-block;
+  vertical-align:-2px;
+  margin-right:6px;
+}
+
+/* 画面には表示しないが、スクリーンリーダーには読ませたいテキスト用 */
+.visually-hidden{
+  position:absolute;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* アニメーションを好まない設定のユーザーには、動きを最小限にする */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *, *::before, *::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+}

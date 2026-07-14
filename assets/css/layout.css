@@ -1,0 +1,93 @@
+/* ==========================================================================
+   layout.css
+   --------------------------------------------------------------------------
+   ページ全体の「型」を作るファイルです。
+   ・コンテナ幅
+   ・セクションの共通の余白
+   ・カードなどを並べるグリッド
+   ・見出しブロックの共通パターン
+   を定義しています。中身の見た目（色・カード装飾など）は components.css /
+   home.css 側で調整します。
+   ========================================================================== */
+
+/* 各セクションの横幅を揃えるコンテナ。
+   ★ サイト全体の横幅を変えたい場合は base.css の --container-width を編集 */
+.container{
+  width:100%;
+  max-width:var(--container-width);
+  margin-inline:auto;
+  padding-inline:var(--space-md);
+}
+
+/* セクションごとの上下余白。
+   ★ セクション間の余白を詰めたい／広げたい場合はここを調整 */
+.section{
+  padding-block:var(--space-3xl);
+}
+@media (max-width:640px){
+  .section{ padding-block:var(--space-2xl); }
+}
+
+/* 背景色を交互に変えたいセクションに付与するクラス */
+.section--alt{
+  background:var(--color-paper-alt);
+}
+
+/* セクション上部の「ラベル＋見出し＋リード文」の共通パターン */
+.section-head{
+  max-width:640px;
+  margin-bottom:var(--space-xl);
+}
+.section-head--center{
+  margin-inline:auto;
+  text-align:center;
+}
+.section-head h2{ margin-bottom:var(--space-sm); }
+
+/* ---------------------------------------------------------------------
+   グリッド（カードを並べるレイアウト）
+   スマホでは1列、タブレット以上で列数を増やす「スマホファースト」構成。
+   --------------------------------------------------------------------- */
+.grid{
+  display:grid;
+  gap:var(--space-md);
+}
+.grid--2{ grid-template-columns:1fr; }
+.grid--3{ grid-template-columns:1fr; }
+.grid--4{ grid-template-columns:1fr; }
+
+@media (min-width:640px){
+  .grid--2{ grid-template-columns:repeat(2,1fr); }
+  .grid--4{ grid-template-columns:repeat(2,1fr); }
+}
+@media (min-width:900px){
+  .grid--3{ grid-template-columns:repeat(3,1fr); }
+  .grid--4{ grid-template-columns:repeat(4,1fr); }
+}
+
+/* 2カラム（テキスト＋写真など）レイアウト。900px未満は縦積み */
+.split{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:var(--space-xl);
+  align-items:center;
+}
+@media (min-width:900px){
+  .split{ grid-template-columns:1fr 1fr; gap:var(--space-2xl); }
+}
+.split--reverse{ direction:rtl; }
+.split--reverse > *{ direction:ltr; }
+
+/* 横スクロールさせたいカード列（スマホ用）。
+   PC側は home.css 内で個別にグリッド表示へ切り替えます。 */
+.scroll-row{
+  display:flex;
+  gap:var(--space-md);
+  overflow-x:auto;
+  padding-bottom:var(--space-2xs);
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+}
+.scroll-row::-webkit-scrollbar{ height:6px; }
+.scroll-row::-webkit-scrollbar-thumb{ background:var(--color-line-strong); border-radius:var(--radius-full); }
+.scroll-row > *{ scroll-snap-align:start; flex:0 0 auto; }
